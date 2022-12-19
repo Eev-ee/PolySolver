@@ -39,7 +39,7 @@ solveQuartic[a_,b_,c_,d_,e_]:=Module[
 		q==0,
 		
 		{z0,z1}=Sqrt[solveQuadratic[1,p,r]];
-		k+{-z1,z0,z0,z1},
+		k+{-z1,-z0,z0,z1},
 		
 		y=solveCubic[2,-p,-2*r,p*r-q^2/4][[1]];
 		m0=Sqrt[2*y-p];
