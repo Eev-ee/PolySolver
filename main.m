@@ -16,7 +16,7 @@ solveCubic[a_,b_,c_,d_]:=Module[
 	{k,p,q,r,m0,m1},
 	k=-b/(3*a);
 	p=(c+2*b*k+3*a*k^2)/(3*a);
-	q=-(d+k(c+k(b+a*k)))/(2*a);
+	q=-(d+k*(c+k*(b+a*k)))/(2*a);
 	r=Sqrt[p^3+q^2];
 	
 	m0=If[Im[r]!=0,(q+r)^(1/3),If[q+r<0,-CubeRoot[-q-r],CubeRoot[q+r]]];
@@ -55,3 +55,10 @@ solveQuartic[a_,b_,c_,d_,e_]:=Module[
 	]
 ];
 
+
+
+
+(*In[99]:= solveQuartic[1,3,4,0,0]
+
+Out[99]= {0, 0, -(3/4) + 1/2 (-(3/2) - I Sqrt[7]), -(3/4) + 
+  1/2 (-(3/2) + I Sqrt[7])}*)
