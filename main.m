@@ -29,7 +29,7 @@ solveCubic[a_,b_,c_,d_]:=Module[
 	}]
 ];
 solveQuartic[a_,b_,c_,d_,e_]:=Module[
-	{k,p,q,r,z0,z1,y,m0,m1,n0,n1},
+	{k,p,q,r,z0,z1,y,m0,m1,n0,n1,n2,n3},
 	k=-b/(4*a);
 	p=(c+3*k*(b+2*a*k))/a;
 	q=(d+k*(2*c+k*(3*b+4*a*k)))/a;
@@ -40,17 +40,14 @@ solveQuartic[a_,b_,c_,d_,e_]:=Module[
 		
 		{z0,z1}=Sqrt[solveQuadratic[1,p,r]];
 		k+{-z1,-z0,z0,z1},
-		
+
 		y=solveCubic[2,-p,-2*r,p*r-q^2/4][[1]];
 		m0=Sqrt[2*y-p];
-		m1=(2*q)/m0;
-		n0=Sqrt[-2*y-p+m1];
-		n1=Sqrt[-2*y-p-m1];
+		m1=q/(2*m0);
+		{n0,n1}=solveQuadratic[1,m0,y-m1];
+		{n2,n3}=solveQuadratic[1,-m0,y+m1];
 		Sort[k+{
-			(-m0+n0)/2,
-			(-m0-n0)/2,
-			(m0+n1)/2,
-			(m0-n1)/2
+			n0,n1,n2,n3
 		}]
 	]
 ];
